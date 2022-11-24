@@ -19,7 +19,7 @@ table {
 
 }
 
-.cell{
+.cell {
     width: 30px;
     height: 30px;
     border: inset 3px rgb(43, 43, 43);
@@ -31,7 +31,7 @@ table {
     color: transparent;
     /* color:black; */
     transition: 0.4s;
- } 
+}
 
 .cell:hover {
     background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(38, 38, 38));
@@ -42,9 +42,26 @@ table {
 
 .shown {
     text-shadow: rgb(0, 0, 0) 2px 2px 3px;
-    color: rgb(197, 73, 20);
+    color: #c54914;
     font-size: 25px;
 
+}
+
+.btn {
+    cursor: pointer;
+
+}
+
+.smiley {
+    box-shadow: inset grey 1px 0px 6px 0px;
+    font-size: 50px;
+    text-align: center;
+    border: inset 6px rgb(33, 33, 33);
+    width: 70px;
+    height: 70px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h2 {
@@ -52,19 +69,30 @@ h2 {
     font-size: 25px;
 }
 
-.timer{
+.timer {
+    display: inline-block;
     box-shadow: inset grey 1px 0px 6px 0px;
-   font-size: 25px;
-   border: inset 6px rgb(33, 33, 33);
-   width: 90px;
-   height: 30px;
-   text-align: center;
-   margin-top: 30px;
-   margin-left: 59%;
+    font-size: 25px;
+    border: inset 6px rgb(33, 33, 33);
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: auto;
 }
 
 
-
+.lives {
+    display: inline-block;
+    box-shadow: inset grey 1px 0px 6px 0px;
+    font-size: 25px;
+    border: inset 6px rgb(33, 33, 33);
+    width: 140px;
+    height: 30px;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 10%;
+}
 
 
 

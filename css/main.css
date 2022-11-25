@@ -6,7 +6,6 @@ body {
 }
 
 h1 {
-    /* transform: translate(50%,-50%); */
     text-transform: uppercase;
     font-family: verdana;
     color: #f5f5f5;
@@ -156,7 +155,6 @@ h2 {
 }
 
 .hints {
-    /* float: left; */
     display: inline-block;
     box-shadow: inset grey 1px 0px 6px 0px;
     font-size: 25px;

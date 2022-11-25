@@ -184,7 +184,6 @@ function showMines() {
 
 
 
-
 function locateMines(cellI, cellJ) {
     var cells = getEmptyCells(gBoard)
     for (var i = 0; i < gLevel.mines; i++) {

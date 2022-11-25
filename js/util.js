@@ -5,7 +5,7 @@ function getRandomInt(min, max) {
 }
 
 
-// בודק אם מוקש ומעלה את ספירת המוקשים
+
 function setMinesNegCount(cellI, cellJ, mat) {
     var minesAroundCount = 0
     for (var i = cellI - 1; i <= cellI + 1; i++) {
@@ -31,7 +31,6 @@ function buildBoard(size) {
         }
     }
 
-    // console.table(board)
     return board
 }
 
@@ -43,7 +42,7 @@ function renderCell(location, value) {
 }
 
 
-// סופר מוקשים לכל תא
+
 function negsCount(board) {
     for (var i = 0; i < board.length; i++) {
         for (var j = 0; j < board.length; j++) {
@@ -105,4 +104,50 @@ function onToggleModal(text = '', shouldOpen = false) {
     var elModalSub = document.querySelector('.modal h2')
     elModalSub.innerText = text
     elModal.style.display = shouldOpen ? 'block' : 'none'
+}
+
+
+function lose() {
+    gGame.isOn = false
+    elSmiley.innerText = LOSE
+    showMines()
+    clearInterval(gTimerInterval)
+    onToggleModal('GAME OVER', true)
+}
+
+function win() {
+    gGame.isOn = false
+    elSmiley.innerText = WIN
+    clearInterval(gTimerInterval)
+    onToggleModal('YOU WIN!🎉', true)
+}
+
+
+function expandHint(board, cellI, cellJ) {
+    var hintCells = []
+    for (var i = cellI - 1; i <= cellI + 1; i++) {
+        if (i < 0 || i >= board.length) continue
+        for (var j = cellJ - 1; j <= cellJ + 1; j++) {
+            if (i === cellI && j === cellJ) continue
+            if (j < 0 || j >= board[i].length) continue
+            var currCell = board[i][j]
+            var elHinted = document.querySelector(`.cell-${i}-${j}`)
+            elHinted.classList.add('shown')
+            if (currCell.isMine) {
+                elHinted.innerText = MINE
+            } else {
+                elHinted.innerText = currCell.minesAroundCount
+            }
+            hintCells.push(elHinted)
+        }
+    }
+    gIsHint = !gIsHint
+
+    var hintInterval = setInterval(() => {
+        for (var i = 0; i < hintCells.length; i++) {
+            hintCells[i].classList.remove('shown')
+        }
+        clearInterval(hintInterval)
+        gGame.hints--
+    }, 1000);
 }

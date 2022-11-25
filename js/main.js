@@ -4,6 +4,7 @@
 const MINE = '💣'
 const MARK = '🚩'
 const EMPTY = ''
+const HINT = '💡'
 const NORMAL = '😄'
 const LOSE = '🤯'
 const WIN = '😎'
@@ -16,7 +17,8 @@ var gStartTime
 var gTimerInterval
 var gMinesInterval
 var gGame
-var gHint = false
+var gIsHint = false
+
 
 var gLevel = {
     size: 4,
@@ -36,9 +38,12 @@ function resetGame() {
         shownCount: 0,
         secsPassed: 0,
         flagCount: 0,
-        lives: 3
+        lives: 3,
+        hints: 3
     }
-    document.querySelector('.lives').innerText = '🤍🤍🤍'
+
+    document.querySelector('.lives').innerText = '🤍 🤍 🤍'
+    document.querySelector('.hint').innerText = '💡💡💡'
     document.querySelector('.timer').innerText = '000⏳'
     elSmiley.innerText = NORMAL
     onToggleModal()
@@ -82,8 +87,7 @@ function onCellClicked(elCell, cellI, cellJ) {
 
     //general
     currCell.isShown = true
-    // elCell.classList.add('shown')
-    
+
     // first click
     if (gGame.isFirstClick) {
         gGame.shownCount++
@@ -93,15 +97,19 @@ function onCellClicked(elCell, cellI, cellJ) {
         gGame.isOn = true
         startTimer()
     }
-    
+
+    // if hint is clicked
+    if (gIsHint) {
+        expandHint(gBoard, cellI, cellJ)
+    } 
+
+
     // if is mine
     if (currCell.isMine) {
         onMineClick(elCell)
-        if (checkGameOver()) {
-           lose()
-        }
+        if (checkGameOver()) lose()
     }
-    
+
     //if is NOT mine and NOT first click
     if (!currCell.isMine) {
         elCell.classList.add('shown')
@@ -112,13 +120,6 @@ function onCellClicked(elCell, cellI, cellJ) {
     }
 }
 
-function lose(){
-    gGame.isOn = false
-    elSmiley.innerText = LOSE
-    showMines()
-    clearInterval(gTimerInterval)
-    onToggleModal('GAME OVER', true)
-}
 
 function onMineClick(elCell) {
     elCell.innerText = MINE
@@ -150,11 +151,7 @@ function plantFlag(elCell, cellI, cellJ) {
         }
         currCell.isMarked = !currCell.isMarked
     }
-    if (checkGameOver()) {
-        elSmiley.innerText = WIN
-        onToggleModal('YOU WIN!', true)
-        clearInterval(gTimerInterval)
-    }
+    if (checkGameOver()) win()
 }
 
 
@@ -178,7 +175,6 @@ function showMines() {
         for (var j = 0; j < gBoard.length; j++) {
             if (gBoard[i][j].isMine) {
                 var elCell = document.querySelector(`.cell-${i}-${j}`)
-                console.log('elCell = ', elCell)
                 elCell.classList.add('shown')
                 elCell.innerText = MINE
             }
@@ -209,5 +205,13 @@ function checkNegs(elCell, i, j) {
     }
 }
 
+
+function onHint() {
+    gIsHint = true
+    var elHint = document.querySelector(`.hint`).innerText
+    elHint = elHint.slice(2)
+    document.querySelector('.hint').innerText = elHint
+
+}
 
 

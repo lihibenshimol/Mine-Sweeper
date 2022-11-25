@@ -31,7 +31,7 @@ function buildBoard(size) {
         }
     }
 
-    console.table(board)
+    // console.table(board)
     return board
 }
 
@@ -51,4 +51,58 @@ function negsCount(board) {
             currCell.minesAroundCount = setMinesNegCount(i, j, board)
         }
     }
+}
+
+
+
+function startTimer() {
+    gTimerInterval = setInterval(() => {
+        gGame.secsPassed++
+        var elH2 = document.querySelector('.timer')
+        elH2.innerText = '0' + gGame.secsPassed + '⏳'
+    }, 1000);
+}
+
+
+
+
+function getEmptyCells(board) {
+    var cells = []
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board[i].length; j++) {
+            if (!board[i][j].isMine) {
+                cells.push({ i, j })
+            } else i--
+        }
+    } return cells
+}
+
+function drawRandomCell(cells) {
+    var randIdx = getRandomInt(0, cells.length)
+    return cells.splice(randIdx, 1)[0]
+}
+
+
+function expandShown(board, cellI, cellJ) {
+    for (var i = cellI - 1; i <= cellI + 1; i++) {
+        if (i < 0 || i >= board.length) continue
+        for (var j = cellJ - 1; j <= cellJ + 1; j++) {
+            if (i === cellI && j === cellJ) continue
+            if (j < 0 || j >= board[i].length) continue
+            if (!gBoard[i][j].isShown) {
+                var elCell = document.querySelector(`.cell-${i}-${j}`)
+                elCell.classList.add('shown')
+                elCell.innerText = EMPTY
+                gBoard[i][j].isShown = true
+                gGame.shownCount++
+            }
+        }
+    }
+}
+
+function onToggleModal(text = '', shouldOpen = false) {
+    const elModal = document.querySelector('.modal')
+    var elModalSub = document.querySelector('.modal h2')
+    elModalSub.innerText = text
+    elModal.style.display = shouldOpen ? 'block' : 'none'
 }

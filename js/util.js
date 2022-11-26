@@ -27,7 +27,6 @@ function buildBoard(size) {
             board[i][j] = { minesAroundCount: 0, isShown: false, isMine: false, isMarked: false }
         }
     }
-
     return board
 }
 
@@ -96,20 +95,20 @@ function expandShown(board, cellI, cellJ) {
     for (var i = cellI - 1; i <= cellI + 1; i++) {
         if (i < 0 || i >= board.length) continue
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
-           var currCell = board[i][j]
+            var currCell = board[i][j]
             if (i === cellI && j === cellJ) continue
             if (j < 0 || j >= board[i].length) continue
             if (currCell.isShown) continue
-                var elCell = document.querySelector(`.cell-${i}-${j}`)
-                elCell.classList.add('shown')
-                elCell.innerText = currCell.minesAroundCount
-                currCell.isShown = true
-                gGame.shownCount++            
+            if (currCell.isMine) continue
+            var elCell = document.querySelector(`.cell-${i}-${j}`)
+            elCell.classList.add('shown')
+            elCell.innerText = currCell.minesAroundCount
+            currCell.isShown = true
+            gGame.shownCount++
+            expandShown(board, cellI, cellJ)
         }
     }
 }
-
-
 
 function onToggleModal(text = '', shouldOpen = false) {
     const elModal = document.querySelector('.modal')
@@ -124,7 +123,7 @@ function lose() {
     showMines()
     clearInterval(gTimerInterval)
     onToggleModal('GAME OVER', true)
-    playLose()
+    audioLose.play()
 }
 
 function win() {
@@ -132,7 +131,7 @@ function win() {
     elSmiley.innerText = WIN
     clearInterval(gTimerInterval)
     onToggleModal('YOU WIN!🎉', true)
-    playWin()
+    audioWin.play()
 }
 
 function expandHint(board, cellI, cellJ) {
@@ -162,14 +161,4 @@ function expandHint(board, cellI, cellJ) {
         clearInterval(hintInterval)
         gGame.hints--
     }, 1000);
-}
-
-function playWin() {
-    var sound = new Audio('sound/youWin.mp3');
-    sound.play();
-}
-
-function playLose() {
-    var sound = new Audio('sound/gameOver.mp3');
-    sound.play();
 }

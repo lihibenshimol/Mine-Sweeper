@@ -9,7 +9,8 @@ const NORMAL = '😄'
 const LOSE = '🤯'
 const WIN = '😎'
 
-
+const audioWin = new Audio('sound/youWin.mp3')
+const audioLose = new Audio('sound/gameOver.mp3')
 
 var elSmiley = document.querySelector('.smiley')
 var gBoard
@@ -19,8 +20,8 @@ var gMinesInterval
 var gGame
 var gIsHint = false
 var gLevel = {
-    size: 4,
-    mines: 2
+    size: 8,
+    mines: 14
 }
 
 function onInitGame() {

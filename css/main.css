@@ -31,7 +31,6 @@ table {
     height: 450px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10px;
     border-spacing: 0px;
 
 }
@@ -41,7 +40,6 @@ td {
     height: 25px;
     border: inset 5px rgb(43, 43, 43);
     background-image: linear-gradient(to top right, rgb(37, 37, 37), grey);
-    /* background-color: rgb(89, 89, 89); */
     text-align: center;
     text-shadow: none;
     font-size: 25px;
@@ -127,46 +125,49 @@ h2 {
     font-size: 25px;
 }
 
+
+.info {
+    padding: 10px;
+    margin: auto;
+    display: table;
+}
+
 .timer {
-    display: inline-block;
+    float: left;
     box-shadow: inset grey 1px 0px 6px 0px;
-    font-size: 25px;
+    font-size: 30px;
     border: inset 6px rgb(33, 33, 33);
     width: 90px;
     height: 40px;
     text-align: center;
-    margin-top: 20px;
     margin-right: auto;
     margin-left: auto;
 }
 
 
 .lives {
-    display: inline-block;
+    float: left;
     box-shadow: inset grey 1px 0px 6px 0px;
-    font-size: 25px;
+    font-size: 30px;
     border: inset 6px rgb(33, 33, 33);
     width: 140px;
     height: 40px;
     text-align: center;
     margin-left: auto;
-    margin-bottom: 20px;
-
 }
 
 .hints {
-    display: inline-block;
+    float: right;
     box-shadow: inset grey 1px 0px 6px 0px;
-    font-size: 25px;
+    font-size: 30px;
     border: inset 6px rgb(33, 33, 33);
     width: 140px;
     height: 40px;
     text-align: center;
     margin-left: auto;
-    cursor: pointer;
-    font-size: 30px;
     background-color: Transparent;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
 
 

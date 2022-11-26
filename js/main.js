@@ -84,7 +84,7 @@ function renderBoard(board) {
 
 function onCellClicked(elCell, cellI, cellJ) {
     var currCell = gBoard[cellI][cellJ]
-
+    if (currCell.isMarked) return
     //general
     currCell.isShown = true
 
@@ -134,6 +134,7 @@ function onMineClick(elCell) {
 
 function plantFlag(elCell, cellI, cellJ) {
     var currCell = gBoard[cellI][cellJ]
+    console.log('currCell = ', currCell)
     if (currCell.isShown) return
 
     if (gGame.isOn) {

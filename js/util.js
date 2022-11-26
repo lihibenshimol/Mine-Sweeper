@@ -113,6 +113,7 @@ function lose() {
     showMines()
     clearInterval(gTimerInterval)
     onToggleModal('GAME OVER', true)
+    playLose()
 }
 
 function win() {
@@ -120,6 +121,7 @@ function win() {
     elSmiley.innerText = WIN
     clearInterval(gTimerInterval)
     onToggleModal('YOU WIN!🎉', true)
+    playWin()
 }
 
 
@@ -150,4 +152,15 @@ function expandHint(board, cellI, cellJ) {
         clearInterval(hintInterval)
         gGame.hints--
     }, 1000);
+}
+
+
+function playWin() {
+    var sound = new Audio('sound/youWin.mp3');
+    sound.play();
+}
+
+function playLose() {
+    var sound = new Audio('sound/gameOver.mp3');
+    sound.play();
 }

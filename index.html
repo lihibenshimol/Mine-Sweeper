@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="img/mine.png">
     <title>Mine Sweeper</title>
 
 </head>
@@ -18,21 +19,23 @@
 
     <div class="buttons">
         <button class="btn" onclick="onChangeLevel(4, 2)">Easy</button>
-        <button class="btn" onclick="onChangeLevel(8,12)">medium</button>
-        <button class="btn" onclick="onChangeLevel(12,25)">Extreme</button>
+        <button class="btn" onclick="onChangeLevel(8,14)">medium</button>
+        <button class="btn" onclick="onChangeLevel(12,32)">Extreme</button>
     </div>
     
-
-    <div class="timer">
-        <h2>000⏳</h2>
+    <div class="info">
+ 
+        <div class="timer">
+            <h2>000⏳</h2>
+        </div>
+        
+        <div class="lives"> </div>
+        
+        <div class="hints">
+            <span class="hint" onclick="onHint()">💡💡💡</span> 
+        </div>
+        
     </div>
-
-    <div class="lives"> </div>
-
-    <div class="hints">
-        <span class="hint" onclick="onHint()">💡💡💡</span> 
- </div>
-
 
     <div class="modal">
         <h2></h2>

@@ -38,7 +38,7 @@ table {
 td {
     width: 25px;
     height: 25px;
-    border: inset 5px rgb(43, 43, 43);
+    border: inset 2px rgb(43, 43, 43);
     background-image: linear-gradient(to top right, rgb(37, 37, 37), grey);
     text-align: center;
     text-shadow: none;
@@ -52,7 +52,7 @@ td {
 
 .cell:hover {
     background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(38, 38, 38));
-    border: groove 3px black;
+    border: groove 2px black;
     cursor: pointer;
 }
 
